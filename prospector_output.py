@@ -1,6 +1,4 @@
 # coding: utf-8
-import matplotlib 
-matplotlib.use('Agg')
 from corner import quantile
 import prospect.io.read_results as pread
 from prospect.models.transforms import zfrac_to_sfrac, logsfr_ratios_to_sfrs, zfrac_to_sfr, tburst_from_fage
@@ -39,7 +37,7 @@ mweighted_age = []
 for galaxy_number in range(galaxies):
     res, obs, mod = 0, 0, 0
     galaxy_num = "{:03d}".format(galaxy_number)
-    infile = prosp_dir+'/snap*.galaxy'+galaxy_num+'_*_mcmc.h5'
+    infile = prosp_dir+'/snap*.galaxy'+galaxy_num+'_*.h5'
     globfiles = glob.glob(infile)
     if len(globfiles) == 0:
         print('No files matching glob pattern %s' % infile)
@@ -60,7 +58,8 @@ for galaxy_number in range(galaxies):
     mass_frac = mean_mod[-1]
     if any('massmet_1' in s for s in thetas):
         mass_index = [i for i, s in enumerate(thetas) if 'massmet_1' in s]
-        der_smass.append(10**theta_best[mass_index[0]] * mass_frac)
+        mass = 10**theta_best[mass_index[0]] * mass_frac
+        der_smass.append(mass)
         gal_list.append(galaxy_num)
         metal_idx = [i for i, s in enumerate(thetas) if 'massmet_2' in s]
         metallicity.append(theta_best[metal_idx[0]])
@@ -68,8 +67,11 @@ for galaxy_number in range(galaxies):
         mass_index = [i for i, s in enumerate(thetas) if 'mass' in s]
         metal_idx = [i for i, s in enumerate(thetas) if 'logzsol' in s]
         if thetas[mass_index[0]] == 'mass' or thetas[mass_index[0]] == 'total_mass':
-            der_smass.append(theta_best[mass_index[0]] * mass_frac)
-        else: der_smass.append(10**theta_best[mass_index[0]] * mass_frac)
+            mass = theta_best[mass_index[0]] * mass_frac
+            der_smass.append(mass)
+        else:
+            mass = (10**theta_best[mass_index[0]]) * mass_frac
+            der_smass.append(mass)
         gal_list.append(galaxy_num)
         metallicity.append(theta_best[metal_idx[0]]) 
 
@@ -124,7 +126,7 @@ for galaxy_number in range(galaxies):
             
     if any('z_fraction' in s for s in thetas):
         #mass_idx = [i for i, s in enumerate(thetas) if 'total_mass' in s]
-        total_mass = (10**theta_best[mass_index]) * mass_frac
+        total_mass = mass
         zfrac_idx = [i for i, s in enumerate(thetas) if 'z_fraction' in s]
         #zfrac_bins = []
         #for i in zfrac_idx:
@@ -159,7 +161,7 @@ for galaxy_number in range(galaxies):
 
     if any('logsfr_ratios' in s for s in thetas):
         #mass_idx = [i for i, s in enumerate(thetas) if 'massmet_1' in s]
-        logmass = np.log10((10**theta_best[mass_index]) * mass_frac)
+        logmass = np.log10(mass)
         sfrfrac_idx = [i for i, s in enumerate(thetas) if 'sfr' in s]
         #sfrfrac_bins = []
         #for i in sfrfrac_idx:

@@ -1,10 +1,10 @@
 import caesar
 
 caesar.driver.drive(
-    snapdirs=["/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/caesarsnaps_newFOF"],
+    snapdirs=["/ufrc/narayanan/s.lower/galaxies_project1/output/"],
     snapname="snapshot_",
-    snapnums=list(range(40, 306)),
-    progen_rad=True,
+    snapnums=list(range(20, 70)),
+    progen_rad=False,
     extension="hdf5",
-    skipran=True,
+    skipran=False,
 )

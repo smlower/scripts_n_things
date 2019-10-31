@@ -64,7 +64,7 @@ def get_best(res, **kwargs):
 #dir_model = '/ufrc/narayanan/s.lower/simSEDs/simbam25n512_newfof/snap305_massmetal/dirichlet/snap305.galaxy'+'{0:03}'.format(gal)+'*.h5'
 
 
-observed = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_boxtest/snap305/snap305.galaxy'+'{0:03}'.format(gal)+'.rtout.sed'
+observed = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_boxtest/mono_seds/snap305/snap305.galaxy'+'{0:03}'.format(gal)+'.rtout.sed'
 obs_spec, obs_wav = load_obs(observed)
 np.savez('/ufrc/narayanan/s.lower/SEDs/z0/SED_galaxy'+str(gal)+'.npz', wav=obs_wav, spec=obs_spec)
 

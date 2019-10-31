@@ -14,7 +14,7 @@ from astropy.cosmology import Planck13
 from astropy import units as u
 from astropy import constants
 import h5py
-from hyperion_input_seds import get_input_seds
+
 from glob import glob
 
 import sys, os
@@ -30,12 +30,12 @@ galaxy_num = sys.argv[1]
 snap_str = '305'
 
 #composite SED
-sed_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_oldpd/'
+sed_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_boxtest/mono_seds/snap305/'
 #stellar only SED
-sources_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_oldpd/'
+sources_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_boxtest/snap305/'
 
 
-output_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_boxtest/attenuation_curves/unfiltered/'
+output_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_boxtest/attenuation_curves'
 #========================================================
 
 
@@ -62,7 +62,7 @@ def sed_downsample(source_lam,lum_source,wav_rest):
 sed_file = glob(sed_directory+'/*galaxy'+"{:03d}".format(int(galaxy_num))+'.rtout.sed')[0]
 #print(sed_file)
 
-stellar_file = glob(sources_directory+'/*.galaxy'+"{:03d}".format(int(galaxy_num))+'.rtin.sed')[0]
+stellar_file = glob(sources_directory+'/stellar_*_galaxy'+galaxy_num+'.npz')[0]
 
 
 
@@ -78,57 +78,30 @@ fnu_obs_sed = lum_obs_sed.to(u.Lsun)
 fnu_obs_sed /= nu_rest_sed.to(u.Hz)
 fnu_obs_sed = fnu_obs_sed.to(u.Lsun/u.Hz)
 
-#stellar_sed = np.load(stellar_file)
-#nu_rest_stellar = stellar_sed['nu'] #Hz
-#fnu_rest_stellar = stellar_sed['fnu'] #Lsun/Hz
-#fnu_rest_stellar = fnu_rest_stellar * u.Lsun/u.Hz
-#nu_rest_stellar = nu_rest_stellar * u.Hz
-#lum_rest_stellar = fnu_rest_stellar * nu_rest_stellar
-#lam_rest_stellar = constants.c.cgs/(nu_rest_stellar)
+stellar_sed = np.load(stellar_file)
+nu_rest_stellar = stellar_sed['nu'] #Hz
+fnu_rest_stellar = stellar_sed['fnu'] #Lsun/Hz
+fnu_rest_stellar = fnu_rest_stellar * u.Lsun/u.Hz
+nu_rest_stellar = nu_rest_stellar * u.Hz
+lum_rest_stellar = fnu_rest_stellar * nu_rest_stellar
+lam_rest_stellar = constants.c.cgs/(nu_rest_stellar)
 
 #source_lam_downsampled,lum_source_downsampled = sed_downsample(lam_rest_stellar.to(u#.micron),lum_rest_stellar.to(u.Lsun),wav_rest_sed.to(u.micron))
 #source_lam_downsampled = source_lam_downsampled * u.micron
 #lum_source_downsampled  = lum_source_downsampled * u.Lsun
 
 
+idx = np.where((lam_rest_stellar.to(u*micron) > 0.1) & (lam_rest_stelalr.to(u*micron) < 1.0))
 
-source_nu,source_fnu = get_input_seds(stellar_file)
-source_nu = source_nu * u.Hz
-source_lam = constants.c.cgs/source_nu
-source_lam = source_lam.to(u.micron)
-source_fnu = source_fnu * u.Lsun/u.Hz
-lum_source = source_fnu * source_nu
-
-
-source_lam_downsampled,lum_source_downsampled = sed_downsample(source_lam.to(u.micron),lum_source.to(u.Lsun),wav_rest_sed.to(u.micron))
-source_lam_downsampled = source_lam_downsampled * u.micron                                                                 
-lum_source_downsampled  = lum_source_downsampled * u.Lsun
-
-
-
-#stellar_sed = ModelOutput(stellar_file)
-#wav_rest_stellar,dum_lum_stellar_sed = stellar_sed.get_sed(inclination='all',aperture=-1)
-#wav_rest_stellar =wav_rest_stellar* u.micron #wav is in micron                                                     
-#nu_rest_stellar = constants.c.cgs/wav_rest_stellar.cgs
-#lum_obs_stellar = dum_lum_stellar_sed
-#lum_obs_stellar = lum_obs_stellar * u.erg/u.s
-#nu_rest_stellar = constants.c.cgs/(wav_rest_stellar.to(u.cm))
-#fnu_obs_stellar= lum_obs_stellar.to(u.Lsun)
-#fnu_obs_stellar/= nu_rest_stellar.to(u.Hz)
-#fnu_obs_stellar= fnu_obs_stellar.to(u.Lsun/u.Hz)
-
-
-#idx = np.where((lam_rest_stellar.to(u.micron).value > 0.1) & (lam_rest_stellar.to(u.micron).value < 1.0))
-
-#stellar_wav = lam_rest_stellar[idx]
-#stellar_flux = lum_obs_stellar[idx]
+stellar_wav = lam_rest_stellar[idx]
+stellar_flux = lum_rest_stellar[idx]
 
 
 
 #find location of vband in lam array
 vband_idx = find_nearest(wav_rest_sed.to(u.angstrom).value,3000)
 vband_extinction = np.zeros(fnu_obs_sed.shape[0])
-for i in range(fnu_obs_sed.shape[0]): vband_extinction[i] = lum_obs_sed[i,vband_idx].cgs/lum_source_downsampled[vband_idx].cgs
+for i in range(fnu_obs_sed.shape[0]): vband_extinction[i] = lum_obs_sed[i,vband_idx].cgs/stellar_flux[vband_idx].cgs
 
 
 
@@ -136,7 +109,7 @@ for i in range(fnu_obs_sed.shape[0]): vband_extinction[i] = lum_obs_sed[i,vband_
 #calculate extinction values
 extinction = np.zeros([lum_obs_sed.shape[0],len(wav_rest_sed)])
 for i in range(lum_obs_sed.shape[0]):
-    extinction[i,:] = lum_obs_sed[i,:].cgs/lum_source_downsampled[:].cgs
+    extinction[i,:] = lum_obs_sed[i,:].cgs/stellar_flux[:].cgs
 
 
 #tau is calculated by: e^-tau = I/I_0

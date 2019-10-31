@@ -181,7 +181,7 @@ if __name__ == '__main__':
     name = model.init_config['dust_type']['units']
     print('Attenuation model:',name)
     run_params["sps_libraries"] = sps.ssp.libraries
-    hfile = "/ufrc/narayanan/s.lower/atten_test/inputPowerLaw_model%s.h5"%(name)
+    hfile = "/ufrc/narayanan/s.lower/atten_test/inputPowerLaw_model%s_nodust1.h5"%(name)
     
     print('Running fits')
     output = fit_model(obs, model, sps, noise, **run_params)
