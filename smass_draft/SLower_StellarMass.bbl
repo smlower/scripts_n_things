@@ -1,0 +1,164 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\href{#1}{#1}}
+
+\bibitem[{Boogaard {et~al.}(2018)Boogaard, Brinchmann, Bouché, Paalvast,
+  Bacon, Bouwens, Contini, Gunawardhana, Inami, Marino, Maseda, Mitchell,
+  Nanayakkara, Richard, Schaye, Schreiber, Tacchella, Wisotzki, \&
+  Zabl}]{boogaard_muse_2018}
+Boogaard, L.~A., Brinchmann, J., Bouché, N., {et~al.} 2018, Astronomy \&
+  Astrophysics, 619, A27, arXiv: 1808.04900.
+\newblock \url{http://arxiv.org/abs/1808.04900}
+
+\bibitem[{Calzetti(2001)}]{calzetti_dust_2001}
+Calzetti, D. 2001, Publications of the Astronomical Society of the Pacific,
+  113, 1449, arXiv: astro-ph/0109035.
+\newblock \url{http://arxiv.org/abs/astro-ph/0109035}
+
+\bibitem[{Carnall {et~al.}(2018)Carnall, Leja, Johnson, McLure, Dunlop, \&
+  Conroy}]{carnall_how_2018}
+Carnall, A.~C., Leja, J., Johnson, B.~D., {et~al.} 2018, arXiv:1811.03635
+  [astro-ph], arXiv: 1811.03635.
+\newblock \url{http://arxiv.org/abs/1811.03635}
+
+\bibitem[{Charlot \& Fall(2000)}]{charlot_simple_2000}
+Charlot, S., \& Fall, S.~M. 2000, The Astrophysical Journal, 539, 718, arXiv:
+  astro-ph/0003128.
+\newblock \url{http://arxiv.org/abs/astro-ph/0003128}
+
+\bibitem[{Conroy(2013)}]{conroy_modeling_2013}
+Conroy, C. 2013, Annual Review of Astronomy and Astrophysics, 51, 393, arXiv:
+  1301.7095.
+\newblock \url{http://arxiv.org/abs/1301.7095}
+
+\bibitem[{Conroy \& Gunn(2010)}]{conroy_propagation_2010}
+Conroy, C., \& Gunn, J.~E. 2010, The Astrophysical Journal, 712, 833, arXiv:
+  0911.3151.
+\newblock \url{http://arxiv.org/abs/0911.3151}
+
+\bibitem[{Conroy {et~al.}(2009)Conroy, Gunn, \&
+  White}]{conroy_propagation_2009}
+Conroy, C., Gunn, J.~E., \& White, M. 2009, The Astrophysical Journal, 699,
+  486, arXiv: 0809.4261.
+\newblock \url{http://arxiv.org/abs/0809.4261}
+
+\bibitem[{Dav{\'{e}} {et~al.}(2019)Dav{\'{e}}, Anglés-Alcázar, Narayanan, Li,
+  Rafieferantsoa, \& Appleby}]{dave_simba:_2019}
+Dav{\'{e}}, R., Anglés-Alcázar, D., Narayanan, D., {et~al.} 2019, Monthly
+  Notices of the Royal Astronomical Society, 486, 2827, arXiv: 1901.10203.
+\newblock \url{http://arxiv.org/abs/1901.10203}
+
+\bibitem[{Draine \& Li(2007)}]{draine_infrared_2007}
+Draine, B.~T., \& Li, A. 2007, The Astrophysical Journal, 657, 810, arXiv:
+  astro-ph/0608003.
+\newblock \url{http://arxiv.org/abs/astro-ph/0608003}
+
+\bibitem[{Dudzevičiūtė {et~al.}(2019)Dudzevičiūtė, Smail, Swinbank,
+  Stach, Almaini, da~Cunha, An, Arumugam, Birkin, Blain, Chapman, Chen,
+  Conselice, Coppin, Dunlop, Farrah, Geach, Gullberg, Hartley, Hodge, Ivison,
+  Maltby, Scott, Simpson, Simpson, Thomson, Walter, Wardlow, Weiss, \& van~der
+  Werf}]{dudzeviciute_alma_2019}
+Dudzevičiūtė, U., Smail, I., Swinbank, A.~M., {et~al.} 2019,
+  arXiv:1910.07524 [astro-ph], arXiv: 1910.07524.
+\newblock \url{http://arxiv.org/abs/1910.07524}
+
+\bibitem[{Gallazzi {et~al.}(2005)Gallazzi, Charlot, Brinchmann, White, \&
+  Tremonti}]{gallazzi_ages_2005}
+Gallazzi, A., Charlot, S., Brinchmann, J., White, S. D.~M., \& Tremonti, C.~A.
+  2005, Monthly Notices of the Royal Astronomical Society, 362, 41, arXiv:
+  astro-ph/0506539.
+\newblock \url{http://arxiv.org/abs/astro-ph/0506539}
+
+\bibitem[{Hayward \& Smith(2015)}]{hayward_should_2015}
+Hayward, C.~C., \& Smith, D. J.~B. 2015, Monthly Notices of the Royal
+  Astronomical Society, 446, 1512.
+\newblock
+  \url{http://academic.oup.com/mnras/article/446/2/1512/2892706/Should-we-believe-the-results-of}
+
+\bibitem[{Hunt {et~al.}(2019)Hunt, De~Looze, Boquien, Nikutta, Rossi, Bianchi,
+  Dale, Granato, Kennicutt, Silva, Ciesla, Relano, Viaene, Brandl, Calzetti,
+  Croxall, Draine, Galametz, Gordon, Groves, Helou, Herrera-Camus, Hinz, Koda,
+  Salim, Sandstrom, Smith, Wilson, \& Zibetti}]{hunt_comprehensive_2019}
+Hunt, L.~K., De~Looze, I., Boquien, M., {et~al.} 2019, Astronomy \&
+  Astrophysics, 621, A51, arXiv: 1809.04088.
+\newblock \url{http://arxiv.org/abs/1809.04088}
+
+\bibitem[{Iyer \& Gawiser(2017)}]{iyer_reconstruction_2017}
+Iyer, K., \& Gawiser, E. 2017, The Astrophysical Journal, 838, 127.
+\newblock
+  \url{http://stacks.iop.org/0004-637X/838/i=2/a=127?key=crossref.bc28ec9eed1ded968aa34464fe32ad0e}
+
+\bibitem[{Iyer {et~al.}(2019)Iyer, Gawiser, Faber, Ferguson, Koekemoer,
+  Pacifici, \& Somerville}]{iyer_non-parametric_2019}
+Iyer, K.~G., Gawiser, E., Faber, S.~M., {et~al.} 2019, arXiv:1901.02877
+  [astro-ph], arXiv: 1901.02877.
+\newblock \url{http://arxiv.org/abs/1901.02877}
+
+\bibitem[{Leja {et~al.}(2018)Leja, Carnall, Johnson, Conroy, \&
+  Speagle}]{leja_how_2018}
+Leja, J., Carnall, A.~C., Johnson, B.~D., Conroy, C., \& Speagle, J.~S. 2018,
+  arXiv:1811.03637 [astro-ph], arXiv: 1811.03637.
+\newblock \url{http://arxiv.org/abs/1811.03637}
+
+\bibitem[{Leja {et~al.}(2017)Leja, Johnson, Conroy, van Dokkum, \&
+  Byler}]{leja_deriving_2017}
+Leja, J., Johnson, B.~D., Conroy, C., van Dokkum, P.~G., \& Byler, N. 2017, The
+  Astrophysical Journal, 837, 170, arXiv: 1609.09073.
+\newblock \url{http://arxiv.org/abs/1609.09073}
+
+\bibitem[{Leja {et~al.}(2019)Leja, Johnson, Conroy, Dokkum, Speagle, Brammer,
+  Momcheva, Skelton, Whitaker, Franx, \& Nelson}]{leja_older_2019}
+Leja, J., Johnson, B.~D., Conroy, C., {et~al.} 2019, The Astrophysical Journal,
+  877, 140.
+\newblock \url{https://iopscience.iop.org/article/10.3847/1538-4357/ab1d5a}
+
+\bibitem[{Li {et~al.}(2019)Li, Narayanan, \& Davé}]{li_dust--gas_2019}
+Li, Q., Narayanan, D., \& Davé, R. 2019, Monthly Notices of the Royal
+  Astronomical Society, 490, 1425, arXiv: 1906.09277.
+\newblock \url{http://arxiv.org/abs/1906.09277}
+
+\bibitem[{Michałowski {et~al.}(2012)Michałowski, Dunlop, Cirasuolo, Hjorth,
+  Hayward, \& Watson}]{michalowski_stellar_2012}
+Michałowski, M.~J., Dunlop, J.~S., Cirasuolo, M., {et~al.} 2012, Astronomy \&
+  Astrophysics, 541, A85, arXiv: 1108.6058.
+\newblock \url{http://arxiv.org/abs/1108.6058}
+
+\bibitem[{Mitchell {et~al.}(2013)Mitchell, Lacey, Baugh, \&
+  Cole}]{mitchell_how_2013}
+Mitchell, P.~D., Lacey, C.~G., Baugh, C.~M., \& Cole, S. 2013, Monthly Notices
+  of the Royal Astronomical Society, 435, 87.
+\newblock
+  \url{http://academic.oup.com/mnras/article/435/1/87/1106259/How-well-can-we-really-estimate-the-stellar-masses}
+
+\bibitem[{Noll {et~al.}(2009)Noll, Burgarella, Giovannoli, Buat, Marcillac, \&
+  Munoz-Mateos}]{noll_analysis_2009}
+Noll, S., Burgarella, D., Giovannoli, E., {et~al.} 2009, Astronomy \&
+  Astrophysics, 507, 1793, arXiv: 0909.5439.
+\newblock \url{http://arxiv.org/abs/0909.5439}
+
+\bibitem[{Pforr {et~al.}(2012)Pforr, Maraston, \&
+  Tonini}]{pforr_recovering_2012}
+Pforr, J., Maraston, C., \& Tonini, C. 2012, Monthly Notices of the Royal
+  Astronomical Society, 422, 3285.
+\newblock
+  \url{https://academic.oup.com/mnras/article-lookup/doi/10.1111/j.1365-2966.2012.20848.x}
+
+\bibitem[{Robitaille(2011)}]{robitaille_hyperion:_2011}
+Robitaille, T.~P. 2011, Astronomy \& Astrophysics, 536, A79, arXiv: 1112.1071.
+\newblock \url{http://arxiv.org/abs/1112.1071}
+
+\bibitem[{Schreiber {et~al.}(2015)Schreiber, Pannella, Elbaz, Béthermin,
+  Inami, Dickinson, Magnelli, Wang, Aussel, Daddi, Juneau, Shu, Sargent, Buat,
+  Faber, Ferguson, Giavalisco, Koekemoer, Magdis, Morrison, Papovich, Santini,
+  \& Scott}]{schreiber_herschel_2015}
+Schreiber, C., Pannella, M., Elbaz, D., {et~al.} 2015, Astronomy \&
+  Astrophysics, 575, A74, arXiv: 1409.5433.
+\newblock \url{http://arxiv.org/abs/1409.5433}
+
+\bibitem[{Walcher {et~al.}(2011)Walcher, Groves, Budavari, \&
+  Dale}]{walcher_fitting_2011}
+Walcher, C.~J., Groves, B., Budavari, T., \& Dale, D. 2011, Astrophysics and
+  Space Science, 331, 1, arXiv: 1008.0395.
+\newblock \url{http://arxiv.org/abs/1008.0395}
+
+\end{thebibliography}
