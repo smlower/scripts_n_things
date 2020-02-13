@@ -432,13 +432,37 @@ Package caption Info: Unknown document class (or package),
 \c@lofdepth=\count150
 \c@subtable=\count151
 \c@subtable@save=\count152
-\c@lotdepth=\count153
+\c@lotdepth=\countaption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->\vskip \abovecaptionski
+p \ifx \@captype \xfigure \gdef \@currentlabel {\thefigure } \else \gdef \@curr
+entlabel {\thetable }\fi \sbox \@tempboxa {\small {\bf #1.} #2}\ifdim \wd \@tem
+pboxa >\hsize \small {\bf #1.} #2\par \else \global \@minipagefalse \hb@xt@ \hs
+ize {\hfill \box \@tempboxa \hfill }\fi \vskip \belowcaptionskip .
+\c@ContinuedFloat=\count147
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
+))
+\c@KVtest=\count148
+\sf@farskip=\skip63
+\sf@captopadj=\dimen136
+\sf@capskip=\skip64
+\sf@nearskip=\skip65
+\c@subfigure=\count149
+\c@subfigure@save=\count150
+\c@lofdepth=\count151
+\c@subtable=\count152
+\c@subtable@save=\count153
+\c@lotdepth=\count154
 \sf@top=\skip66
 \sf@bottom=\skip67
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count154
+\c@float@type=\count155
 \float@exts=\toks22
 \float@box=\box58
 \@float@everytoks=\toks23
@@ -447,7 +471,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen137
 \WF@size=\dimen138
-\c@WF@wrappedlines=\count155
+\c@WF@wrappedlines=\count156
 \WF@box=\box60
 \WF@everypar=\toks24
 Package: wrapfig 2003/01/31  v 3.6
@@ -460,56 +484,38 @@ Class revtex4-1 Warning: Repair the float package.
 
 Class revtex4-1 Info: Patching unrecognized longtable package. (Proceeding with
  fingers crossed) on input line 51.
-Class revtex4-1 Info: Robustifying \LaTeX's \boldmath command on input line 51.
 
-Class revtex4-1 Info: cite was not loaded (OK!) on input line 51.
-Class revtex4-1 Info: mcite was not loaded (OK!) on input line 51.
-Class revtex4-1 Info: multicol was not loaded (OK!) on input line 51.
-(./SLower_StellarMass.aux)
-\openout1 = `SLower_StellarMass.aux'.
+./SLower_StellarMass.tex:51: LaTeX Error: Command \longtable* already defined.
+               Or name \end... illegal, see p.192 of the manual.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.51 \begin{document}
+                     
+? 
+./SLower_StellarMass.tex:51: Emergency stop.
+ ...                                              
+                                                  
+l.51 \begin{document}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
-(/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count156
-\scratchdimen=\dimen139
-\scratchbox=\box61
-\nofMPsegments=\count157
-\nofMParguments=\count158
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count159
-\MPscratchDim=\dimen140
-\MPnumerator=\count160
-\makeMPintoPDFobject=\count161
-\everyMPtoPDFconversion=\toks26
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-(/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-)
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 456.
-
-(/usr/local/texlive/2018/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+ 
+Here is how much of TeX's memory you used:
+ 9239 strings out of 492649
+ 132384 string characters out of 6129622
+ 271321 words of memory out of 5000000
+ 13079 multiletter control sequences out of 15000+600000
+ 4348 words of font info for 16 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 44i,0n,42p,247b,36s stack positions out of 5000i,500n,10000p,200000b,80000s
+./SLower_StellarMass.tex:51:  ==> Fatal error occurred, no output PDF file prod
+uced!
+usr/local/texlive/2018/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
@@ -535,111 +541,100 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 78.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 78.
-
-(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 78.
-
-(/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-
-Package natbib Warning: Citation `conroy_modeling_2013' on page 1 undefined on 
-input line 86.
-
-
-Package natbib Warning: Citation `walcher_fitting_2011' on page 1 undefined on 
-input line 86.
-
-
-Package natbib Warning: Citation `hayward_should_2015' on page 1 undefined on i
-nput line 86.
-
-
-Package natbib Warning: Citation `hunt_comprehensive_2019' on page 1 undefined 
-on input line 86.
-
-
-Package natbib Warning: Citation `mitchell_how_2013' on page 1 undefined on inp
-ut line 86.
-
-
-Package natbib Warning: Citation `pforr_recovering_2012' on page 1 undefined on
- input line 86.
-
-
-Package natbib Warning: Citation `katsianis_high_2020' on page 1 undefined on i
-nput line 86.
-
-
-Package natbib Warning: Citation `schaye_eagle_2015' on page 1 undefined on inp
-ut line 86.
-
-
-Package natbib Warning: Citation `crain_eagle_2015' on page 1 undefined on inpu
-t line 86.
-
-
-Package natbib Warning: Citation `mcalpine_eagle_2016' on page 1 undefined on i
-nput line 86.
-
-
-Package natbib Warning: Citation `baes_radiative_2003' on page 1 undefined on i
-nput line 86.
-
-
-Package natbib Warning: Citation `baes_efficient_2011' on page 1 undefined on i
-nput line 86.
-
-
-Package natbib Warning: Citation `camps_skirt_2015' on page 1 undefined on inpu
-t line 86.
+LaTeX Font Info:    Try loading font information for U+msa on input line 78ine 59.
 
 [1{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-Package natbib Warning: Citation `simha_parametrising_2014' on page 2 undefined
- on input line 91.
+Package natbib Warning: Citation `michalowski_stellar_2012' on page 2 undefined
+ on input line 61.
+
+
+Package natbib Warning: Citation `michalowski_stellar_2012' on page 2 undefined
+ on input line 61.
+
+
+Package natbib Warning: Citation `dudzeviciute_alma_2019' on page 2 undefined o
+n input line 61.
+
+
+Package natbib Warning: Citation `michalowski_stellar_2012' on page 2 undefined
+ on input line 62.
 
 
 Package natbib Warning: Citation `iyer_reconstruction_2017' on page 2 undefined
- on input line 91.
+ on input line 64.
 
 
-Package natbib Warning: Citation `salmon_relation_2015' on page 2 undefined on 
-input line 91.
+Package natbib Warning: Citation `iyer_non-parametric_2019' on page 2 undefined
+ on input line 64.
 
 
-Package natbib Warning: Citation `carnall_how_2019' on page 2 undefined on inpu
-t line 91.
+Package natbib Warning: Citation `leja_deriving_2017' on page 2 undefined on in
+put line 64.
 
 
-Package natbib Warning: Citation `bisigello_statistical_2019' on page 2 undefin
-ed on input line 91.
+Package natbib Warning: Citation `leja_how_2018' on page 2 undefined on input l
+ine 64.
 
 
-Package natbib Warning: Citation `curtis-lake_modelling_2020' on page 2 undefin
-ed on input line 91.
+Package natbib Warning: Citation `leja_older_2019' on page 2 undefined on input
+ line 64.
 
 
-Package natbib Warning: Citation `pacifici_relative_2012' on page 2 undefined o
-n input line 93.
+LaTeX Warning: Reference `section:dirichlet' on page 2 undefined on input line 
+64.
 
 
-Package natbib Warning: Citation `simha_parametrising_2014' on page 2 undefined
- on input line 93.
+Package natbib Warning: Citation `gallazzi_ages_2005' on page 2 undefined on in
+put line 64.
 
 
-Package natbib Warning: Citation `ciesla_sfr-_2017' on page 2 undefined on inpu
-t line 93.
+Underfull \hbox (badness 1077) in paragraph at lines 64--65
+\OT1/cmr/m/n/10 flex-i-bil-ity to []rea-son-ably[] re-pro-duce the vari-a-tion 
+in
+ []
 
 
-Package natbib Warning: Citation `diemer_log-normal_2017' on page 2 undefined o
-n input line 93.
+Package natbib Warning: Citation `leja_how_2018' on page 2 undefined on input l
+ine 66.
+
+[2]
+<fancySED_150.png, id=24, 825.5643pt x 529.0164pt>
+File: fancySED_150.png Graphic file (type png)
+<use fancySED_150.png>
+Package pdftex.def Info: fancySED_150.png  used on input line 74.
+(pdftex.def)             Requested size: 513.11743pt x 328.82628pt.
 
 
-Package natbib Warning: Citation `carnall_how_2019' on page 2 undefined on inpu
+Package natbib Warning: Citation `dave_simba:_2019' on page 3 undefined on inpu
+t line 79.
+
+./SLower_StellarMass.tex:79: Missing $ inserted.
+<inserted text> 
+                $
+l.79 ...t.  The minimum resolved mass is 7.3\times
+                                                   10$^7 \: \mathrm{M}_{\odo...
+
+? 
+./SLower_StellarMass.tex:79: Emergency stop.
+<inserted text> 
+                $
+l.79 ...t.  The minimum resolved mass is 7.3\times
+                                                   10$^7 \: \mathrm{M}_{\odo...
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 8723 strings out of 492649
+ 120759 string characters out of 6129622
+ 280588 words of memory out of 5000000
+ 12508 multiletter control sequences out of 15000+600000
+ 14038 words of font info for 57 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 35i,7n,37p,2341b,381s stack positions out of 5000i,500n,10000p,200000b,80000s
+./SLower_StellarMass.tex:79:  ==> Fatal error occurred, no output PDF file prod
+uced!
+efined on inpu
 t line 93.
 
 
