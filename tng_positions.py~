@@ -1,0 +1,40 @@
+import yt
+import numpy as np
+import sys, os
+from glob import glob
+
+fof_dir = sys.argv[1]
+outfile = sys.argv[2]
+
+ds = yt.load(fof_dir+'/fof_subhalo_tab_099.0.hdf5')
+
+ad = ds.all_data()
+
+pos = {}
+ngalaxies = {}
+
+simba_mstar_lim = 3.0e8 #Msun                                                           
+
+#subhalo_idx = []
+
+#for subhalo in range(len(ad['Subhalo', 'particle_identifier'])):
+#    star_mass = ad['Subhalo', 'SubhaloMassType_4'][subhalo].in_units('Msun')
+#    gas_mass = ad['Subhalo', 'SubhaloMassType_0'][subhalo].in_units('Msun')
+#    if (star_mass.value > simba_mstar_lim) and (gas_mass.value > 0):
+#        subhalo_idx.append(int(ad['Subhalo', 'particle_identifier'][subhalo].value))
+
+gal_list = np.load('/orange/narayanan/s.lower/TNG/galaxy_list_mass_req.npz')['galaxies']
+
+
+i = 0
+for subhalo in gal_list:
+    pos['galaxy'+str(i)] = {}
+    x_pos = ad['Subhalo', 'SubhaloCM_0'][subhalo].in_units('code_length')
+    y_pos = ad['Subhalo', 'SubhaloCM_1'][subhalo].in_units('code_length')
+    z_pos = ad['Subhalo', 'SubhaloCM_2'][subhalo].in_units('code_length')
+    pos['galaxy'+str(i)]['snap099'] = np.array([x_pos, y_pos, z_pos])
+    i += 1
+
+ngalaxies['snap099'] = len(gal_list)
+
+np.savez(outfile, ngalaxies=ngalaxies, pos=pos)

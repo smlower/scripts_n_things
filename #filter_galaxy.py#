@@ -20,11 +20,11 @@ with h5py.File(args.ds, 'r') as input_file, h5py.File(args.output, 'w') as outpu
 
     output_file.create_group('PartType0')
     for k in input_file['PartType0']:
-        output_file['PartType0'][k] = input_file['PartType0'][k][:][glist]
+        output_file['PartType0'][k] = input_file['PartType0'][k][:]#[glist]
 
     output_file.create_group('PartType4')
     for k in input_file['PartType4']:
-        output_file['PartType4'][k] = input_file['PartType4'][k][:][slist]
+        output_file['PartType4'][k] = input_file['PartType4'][k][:]#[slist]
 
     #output_file.create_group('PartType5')
     #for k in input_file['PartType5']:

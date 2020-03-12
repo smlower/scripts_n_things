@@ -1,0 +1,116 @@
+import numpy as np
+from hyperion.model import ModelOutput
+from astropy.cosmology import Planck13
+from astropy import units as u
+from astropy import constants
+from glob2 import glob
+import pandas as pd
+
+from sedpy.observate import load_filters, Filter
+
+
+def find_nearest(array,value):
+    idx = (np.abs(np.array(array)-value)).argmin()
+    return idx
+
+
+#load filter info from sedpy (https://github.com/bd-j/sedpy/)
+galex = ['galex_FUV', 'galex_NUV']
+hst_wfc3_uv  = ['wfc3_uvis_f275w', 'wfc3_uvis_f336w', 'wfc3_uvis_f475w','wfc3_uvis_f555w', 'wfc3_uvis_f606w', 'wfc3_uvis_f814w']
+#sdss = ['sdss_u0', 'sdss_g0', 'sdss_r0', 'sdss_i0', 'sdss_z0']
+hst_wfc3_ir = ['wfc3_ir_f105w', 'wfc3_ir_f110w', 'wfc3_ir_f125w', 'wfc3_ir_f140w', 'wfc3_ir_f160w']
+spitzer_mips = ['spitzer_mips_24']
+herschel_pacs = ['herschel_pacs_70', 'herschel_pacs_100', 'herschel_pacs_160']
+herschel_spire = ['herschel_spire_250', 'herschel_spire_350', 'herschel_spire_500']
+filternames = (galex + hst_wfc3_uv + hst_wfc3_ir + spitzer_mips + herschel_pacs + herschel_spire)
+
+#simba simulation, redshift 0, boxsize=25 Mpc/h, particle count=512^3
+snapdir = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_boxtest/snap305/'
+true_sfr_dir = '/ufrc/narayanan/s.lower/caesar_sfr50.npz' #this is sfr of each galaxy over last 50 Myr (instead of pd grid sfr which is instantaneous
+true_Z_dir = '/ufrc/narayanan/s.lower/snap305_massweightedZ.npz' #mass-weighted metallicity of star particles in each galaxy
+
+#right now, metallicities are absolute, may need to scale to solar later?
+true_Z = np.load(true_Z_dir)['Z_massweighted']
+solar = 0.0196
+true_sfr = np.load(true_sfr_dir)['sfr_50']
+
+
+
+#get matching set of runs
+sed_files = glob(snapdir+'/*.rtout.sed')
+property_files = glob(snapdir+'/grid*.npz')
+    
+num_gals = 2000 #true number of galaxies in this snap ~2500, but past galaxy 2000 masses fall way off so put cut at galaxy 2000
+
+flux_list = []
+flux_unc = []
+mstar = []
+sfr = []
+metallicity = []
+galaxy_list = []
+
+#get fluxes & properties
+for galaxy in range(num_gals):
+    galaxy_num = "{:03d}".format(galaxy)
+    try:
+
+        sedfile = [f for f in sed_files if 'snap305.galaxy'+galaxy_num+'.rtout.sed' in f]
+        m = ModelOutput(sedfile[0])
+        propfile = [f for f in property_files if 'grid_physical_properties.305_galaxy'+galaxy_num+'.npz' in f]
+        prop_data = np.load(propfile[0])
+    except: continue
+
+    galaxy_list.append(galaxy)
+    
+    #get spectrum
+    wav,lum = m.get_sed(inclination='all',aperture=-1)
+    wav  = np.asarray(wav)*u.micron #wav is in micron                                                                                                        
+    wav = wav.to(u.AA)
+   
+    lum = np.asarray(lum)*u.erg/u.s
+    dl = (10. * u.pc).to(u.cm)
+    flux = lum/ (4.*3.14*dl**2.)
+    nu = constants.c.cgs/(wav.to(u.cm))
+    nu = nu.to(u.Hz)
+    flux /= nu
+    flux = flux.to(u.Jy)
+    #now get photometric values at certain filters
+    filters = load_filters(filternames)
+    filter_wavs = [x.wave_mean for x in filters]
+    filter_width = [x.effective_width for x in filters]
+    flx = []
+    flxe = []
+    for i in range(len(filters)):
+        if filter_wavs[i] < 1e5:
+            left = flux[0][np.abs(wav.value - (filter_wavs[i] - filter_width[i])).argmin()].value
+            right = flux[0][np.abs(wav.value - (filter_wavs[i] + filter_width[i])).argmin()].value
+            ave = np.average([left, right])
+            flx.append(ave)
+        else:
+            left = flux[0][np.abs(wav.value - (filter_wavs[i] - 0)).argmin()].value
+            flx.append(left)
+        flxe.append(0.05* flx[i])
+    flux_list.append(flx)
+    flux_unc.append(flxe)
+
+
+    #now get physical properties from pd grid
+    mstar.append(np.sum(prop_data['grid_star_mass']))
+    sfr.append(true_sfr[galaxy])
+    metallicity.append(true_Z[galaxy])
+
+print(flux_list)
+
+#data_flux = {'flux': flux_list}
+data_flux = flux_list
+data_props = {'Mstar' : mstar, 'SFR': sfr, 'Metallicity': metallicity}
+
+#print(data_flux)
+
+s_flux = pd.DataFrame(data=data_flux, columns=filternames, index=galaxy_list)
+s_props = pd.DataFrame(data=data_props, index=galaxy_list)
+
+
+s_flux.to_pickle('/ufrc/narayanan/s.lower/ml_SEDs.pkl')   
+s_props.to_pickle('/ufrc/narayanan/s.lower/ml_props.pkl')    
+

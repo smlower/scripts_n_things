@@ -13,7 +13,7 @@ obj = caesar.load(args.caesar, LoadHalo=0)
 
 glist = obj.galaxies[args.galaxy].glist
 slist = obj.galaxies[args.galaxy].slist
-#bhlist = obj.galaxies[args.galaxy].bhlist
+#dmlist = obj.galaxies[args.galaxy].dmlist
 
 with h5py.File(args.ds, 'r') as input_file, h5py.File(args.output, 'w') as output_file:
     output_file.copy(input_file['Header'], 'Header')
@@ -28,4 +28,4 @@ with h5py.File(args.ds, 'r') as input_file, h5py.File(args.output, 'w') as outpu
 
     #output_file.create_group('PartType5')
     #for k in input_file['PartType5']:
-    #    output_file['PartType5'][k] = input_file['PartType5'][k][:][bhlist]
+    #    output_file['PartType5'][k] = input_file['PartType5'][k][:][dmlist]

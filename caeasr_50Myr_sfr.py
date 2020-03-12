@@ -10,6 +10,8 @@ snapshot = sys.argv[1]
 caesar_snap = sys.argv[2]
 save_dir = sys.argv[3]
 
+snap_num = os.path.splitext(os.path.basename(snapshot))[0]
+
 ds = yt.load(snapshot)
 obj = caesar.load(caesar_snap)
 
@@ -32,7 +34,7 @@ stellar_ages = (simtime - stellar_formation_age).in_units("Gyr")
 
 
 sfr_50 = []
-for INDEX in range(2000):
+for INDEX in range(len(obj.galaxies)):
     
     stellar_mass = star_masses[obj.galaxies[INDEX].slist].in_units('Msun')
     star_ages = stellar_ages[obj.galaxies[INDEX].slist]
@@ -47,4 +49,4 @@ for INDEX in range(2000):
 
 
 
-np.savez(save_dir+'caesar_sfr50.npz', sfr_50=sfr_50)
+np.savez(save_dir+'caesar_sfr50_'+str(snap_num)+'.npz', sfr_50=sfr_50)

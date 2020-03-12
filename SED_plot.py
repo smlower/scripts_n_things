@@ -8,6 +8,8 @@ import sedpy
 from glob import glob
 import pandas as pd
 import numpy as np
+from prospect.sources import FastStepBasis
+
 
 gal = int(sys.argv[1])
 #gal_list = sys.argv[1]
@@ -24,10 +26,10 @@ def load_obs(sed_file):
     wav,flux = m.get_sed(inclination='all',aperture=-1)
     wav  = np.asarray(wav)*u.micron #wav is in micron  
     wav = wav.to(u.AA)
-    #wav *= (1.+0.01)
+    #wav *= (1.+2.)
     flux = np.asarray(flux)*u.erg/u.s
     dl = 10.0*u.pc
-    #dl = Planck15.luminosity_distance(0.01)
+    #dl = Planck15.luminosity_distance(2.0)
     dl = dl.to(u.cm)
     flux /= (4.*3.14*dl**2.)
     nu = constants.c.cgs/(wav.to(u.cm))
@@ -66,7 +68,13 @@ def get_best(res, **kwargs):
 
 observed = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_boxtest/snap305/snap305.galaxy'+'{0:03}'.format(gal)+'.rtout.sed'
 obs_spec, obs_wav = load_obs(observed)
-np.savez('/ufrc/narayanan/s.lower/SEDs/z0/SED_galaxy'+str(gal)+'.npz', wav=obs_wav, spec=obs_spec)
+
+
+
+
+
+
+np.savez('/ufrc/narayanan/s.lower/SEDs/obs_files/SED_galaxy'+str(gal)+'.npz', spec=obs_spec, wav=obs_wav)
 
 '''for file in glob(tau_model):
     res_t, obs_t, mod_t = pread.results_from(file)

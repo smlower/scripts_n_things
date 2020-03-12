@@ -160,8 +160,8 @@ def get_best(res, **kwargs):
     except(ValueError):
         theta_best = res['chain'][imax, :].copy()
 
-    #theta_names = res.get('theta_labels', res['model'].theta_labels())
-    return theta_best
+    theta_names = res.get('theta_labels', res['model'].theta_labels())
+    return theta_names, theta_best
 
 
 # In[ ]:
@@ -340,16 +340,5 @@ def tau_massweighted_age(sfh, time):
 
     top = simps(sfh_time, dx=0.01)
     bottom = simps(sfh, dx=0.01)
-
-    return top/bottom
-
-def const_massweighted_age(sfh, time):
-    from scipy.integrate import simps
-    sfh_time = []
-    for i in range(len(time)):
-        sfh_time.append(sfh*(time[-1] - time[i]))
-
-    top = simps(sfh_time, dx=0.01)
-    bottom = sfh * time[-1]
 
     return top/bottom

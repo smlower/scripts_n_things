@@ -36,20 +36,18 @@ stellar_ages = (simtime - stellar_formation_age).in_units("Gyr")
 #fsps_years = np.linspace(0.01, 14, 200)
 fsps_years = np.arange(0.01, simtime.in_units("Gyr").value, 0.1)
 sfr_bins = fsps_years
-sfr_times = [(j+i)/2 for i, j in zip(sfr_bins[:-1], sfr_bins[1:])] #lookback time
+sfr_times = [(j+i)/2 for i, j in zip(sfr_bins[:-1], sfr_bins[1:])]
 fsps_ssp = fsps.StellarPopulation(sfh=0,
                 zcontinuous=1,
                 imf_type=2,
                 zred=0.0, add_dust_emission=False)
 
-time_list = [simtime.in_units("Gyr").value - item for item in sfr_times]
-gal_list = []
 sfr_list = []
 mw_age_list = []
-for galaxy in range(2500):
+for galaxy in [0]:
     print('On galaxy: ',galaxy)
     sfr_onegal = []
-    gal_list.append(galaxy)
+
     stellar_mass = star_masses[obj.galaxies[galaxy].slist].in_units('Msun')
     stellar_metallicity = star_Z[obj.galaxies[galaxy].slist]
     star_ages = stellar_ages[obj.galaxies[galaxy].slist]
@@ -59,7 +57,6 @@ for galaxy in range(2500):
     for i in range(len(sfr_bins)-1):
         age_bin = np.where((sage > (sfr_bins[i])) & (sage < (sfr_bins[i+1])))[0]
         if len(age_bin) == 0:
-            print(sfr_bins[i])
             sfr_current_bin = 1.0e-10
             sfr_onegal.append(sfr_current_bin)
         else:
@@ -80,11 +77,11 @@ for galaxy in range(2500):
 
 mwage_list = [item for item in mw_age_list for repetitions in range(len(sfr_onegal))]
 data = {'SFR' : np.ravel(sfr_list), 'Mass-weighted Age' : np.ravel(mwage_list)}
-labels = [gal_list, time_list]
+labels = [[2], sfr_times]
 index = pd.MultiIndex.from_product(labels, names=['Galaxy', 'Time [Gyr]'])
 
 s = pd.DataFrame(data, index=index)
-#s.to_pickle('/ufrc/narayanan/s.lower/sfh_snap160galaxy2.pkl') 
+s.to_pickle('/ufrc/narayanan/s.lower/sfh_snap160galaxy2.pkl') 
 
 
 '''c_timelist = list(dict.fromkeys(old_caesar.index.get_level_values('Time [Gyr]')))
