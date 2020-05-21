@@ -135,7 +135,11 @@ for galaxy_number in [galaxies]:
    
     if any('tau' in s for s in thetas):
         tau_idx = [i for i, s in enumerate(thetas) if 'tau' in s]
-        tau = theta_best[tau_idx]
+        tau_chain = [item[tau_index] for item in res['chain']]
+        tau_quan= quantile(tau_chain, [.16, .5, .84])
+        tau50 = tau_quan[1]
+        tau16 = tau_quan[0]
+        tau84 = tau_quan[2]
         stellar_mass = 10**(mass)  #normalization is total mass formed
         #fburst also has an fburst_age which screws with the normal recipe, fix below
         age_idx = thetas.index('tage')
@@ -185,7 +189,7 @@ for galaxy_number in [galaxies]:
         age_idx = thetas.index('tage')
         age = theta_best[age_idx] #Gyr                                                                                 
         norm = stellar_mass / (age*1.0e9)
-        sfr.append(norm)
+        sfr_50.append(norm)
         sfh_type = 'Constant'
         time = np.arange(0, 13.8, 0.05)
         age_mw = const_massweighted_age(np.full(shape=len(time), fill_value=norm), time)
@@ -288,14 +292,18 @@ if 'Parametric' in sfh_type:
     galaxy_list = [item for item in gal_list for repetitions in range(len(sfr_onegal))]
     dmass_list = [item for item in smass_50 for repetitions in range(len(sfr_onegal))]
     imass_list = [item for item in int_smass for repetitions in range(len(sfr_onegal))]
+    mass16_list = [item for item in smass_16 for repetitions in range(len(time))]
+    mass84_list = [item for item in smass_84 for repetitions in range(len(time))]
     massfrac_list = [item for item in mass_frac_list for repetitions in range(len(sfr_onegal))]
     metal_list = [item for item in Z_med for repititions in range(len(sfr_onegal))]
     age_list = [item for item in mweighted_age for repititions in range(len(sfr_onegal))]
-    data = {'Galaxy': galaxy_list, 'Time': timelist, 'SFR' : sfr_list, 'Derived Stellar Mass' : dmass_list, 'Intrinsic Stellar Mass' : imass_list, 'Mass Fraction': massfrac_list, 'Metallicity': metal_list, 'Mass-weighted Age': age_list}
+    data = {'Galaxy': galaxy_list, 'Time': timelist, 'SFR' : sfr_list,'Mass_16' : mass16_list, 'Mass_84': mass84_list, 'Derived Stellar Mass' : dmass_list, 'Intrinsic Stellar Mass' : imass_list, 'Mass Fraction': massfrac_list, 'Metallicity': metal_list, 'Mass-weighted Age': age_list}
 else: 
     map_mass_list = [item for item in smass_map for repetitions in range(2*len(time))]
     sfr_list = [item for item in np.ravel(sfr_50) for repititions in range(2)]
     dmass_list = [item for item in smass_50 for repetitions in range(2*len(time))]
+    mass16_list = [item for item in smass_16 for repetitions in range(2*len(time))]
+    mass84_list = [item for item in smass_84 for repetitions in range(2*len(time))]
     imass_list = [item for item in int_smass for repetitions in range(2*len(time))]
     massfrac_list = [item for item in mass_frac_list for repetitions in range(2*len(time))]
     metal_list = [item for item in Z_med for repititions in range(2*len(time))]
@@ -304,7 +312,7 @@ else:
     age_list = [item for item in mweighted_age for repititions in range(2*len(time))]
     galaxy_list = [item for item in gal_list for repetitions in range(2*len(time))]
     timelist = np.ravel(time)
-    data = {'Galaxy': galaxy_list, 'Time': timelist, 'SFR' : sfr_list, 'SFR_16' : sfr_16list, 'SFR_84' : sfr_84list, 'MAP Mass' : map_mass_list, 'Derived Stellar Mass' : dmass_list, 'Intrinsic Stellar Mass' : imass_list, 'Mass Fraction' : massfrac_list, 'Metallicity' : metal_list, 'Mass-weighted Age': age_list}
+    data = {'Galaxy': galaxy_list, 'Time': timelist, 'SFR' : sfr_list, 'SFR_16' : sfr_16list, 'SFR_84' : sfr_84list, 'MAP Mass' : map_mass_list, 'Derived Stellar Mass' : dmass_list, 'Mass_16' : mass16_list, 'Mass_84': mass84_list, 'Intrinsic Stellar Mass' : imass_list, 'Mass Fraction' : massfrac_list, 'Metallicity' : metal_list, 'Mass-weighted Age': age_list}
 
 #labels = [gal_list, np.ravel(time)]
 

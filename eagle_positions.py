@@ -10,17 +10,24 @@ snap = int(sys.argv[1])
 
 
 
-snap_dir = '/orange/narayanan/s.lower/output/filtered_snapshots/snap0'+str(snap)+'/'
-outfile = '/orange/narayanan/s.lower/output/tng_snap'+str(snap)+'_pos.npz'
+snap_dir = '/orange/narayanan/s.lower/eagle/filtered_snapshots/snap'+str(snap)+'/'
+outfile = '/orange/narayanan/s.lower/eagle/eagle_snap'+str(snap)+'_pos.npz'
+
+#snap_dir = '/orange/narayanan/s.lower/eagle/pd_runs/test/'
+
 
 pos = {}
 ngalaxies = {}
 
-infiles = sorted(glob.glob(snap_dir+'/galaxy_*.hdf5'))
+infiles = glob.glob(snap_dir+'/galaxy_*.hdf5')
 
-for i in [100]:#tqdm.tqdm(range(len(infiles))):
+#infiles = [snap_dir+'/galaxy_10.hdf5']
+
+for i in tqdm.tqdm(range(len(infiles))):
     #print('on galaxy ',i,' of ',len(gal))
-    infile = h5py.File(snap_dir+'/galaxy_'+str(i)+'.hdf5', 'r')
+    try:
+        infile = h5py.File(snap_dir+'/galaxy_'+str(i)+'.hdf5', 'r')
+    except: continue 
     pos['galaxy'+str(i)] = {}
     
 
@@ -36,8 +43,10 @@ for i in [100]:#tqdm.tqdm(range(len(infiles))):
 
 
     pos['galaxy'+str(i)]['snap'+str(snap)] = np.array([x_pos, y_pos, z_pos])
-    #infile.close()
-print(x_pos, y_pos, z_pos)
+    
+
 ngalaxies['snap'+str(snap)] = len(infiles)
 
-#np.savez(outfile, ngalaxies=ngalaxies, pos=pos)
+np.savez(outfile, ngalaxies=ngalaxies, pos=pos)
+
+#print(x_pos, y_pos, z_pos)

@@ -7,7 +7,7 @@ import sys, os
 
 
 
-galaxy = int(sys.argv[1])
+galaxy = int(sys.argv[1])+20001
 
 base_path = '/orange/narayanan/s.lower/'
 snap_num = 99

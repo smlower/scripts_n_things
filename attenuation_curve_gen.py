@@ -30,12 +30,12 @@ galaxy_num = sys.argv[1]
 snap_str = '305'
 
 #composite SED
-sed_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_oldpd/'
+sed_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305/mist_pd/snap305/'
 #stellar only SED
-sources_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_oldpd/'
+sources_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305/mist_pd/snap305/'
 
 
-output_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305_boxtest/attenuation_curves/unfiltered/'
+output_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305/attenuation_curves/042020/'
 #========================================================
 
 
