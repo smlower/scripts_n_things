@@ -4,13 +4,13 @@ import pandas as pd
 import fsps
 from hyperion.model import ModelOutput
 from sedpy.observate import load_filters
-import glob, tqdm
+import glob, tqdm, sys
 import astropy.constants as constants
 import astropy.units as u
 
 
-
-
+snap_num = str(sys.argv[1])
+z = str(sys.argv[2])
 def ssfr_relation(mstar):
     return (10**-13) * (10**mstar)
 
@@ -42,9 +42,9 @@ fsps_ssp = fsps.StellarPopulation(sfh=0,
 solar_Z = 0.0196
 
 
-snaps_dir = '/orange/narayanan/s.lower/eagle/filtered_snapshots/snap028/'
-pd_dir = '/orange/narayanan/s.lower/eagle/pd_runs/snap28/'
-#snaps = glob.glob(snaps_dir+'/galaxy*.hdf5')
+snaps_dir = '/orange/narayanan/s.lower/simba/filtered_snapshots/snap'+snap_num+'/'
+pd_dir = '/orange/narayanan/s.lower/simba/pd_runs/snap'+snap_num+'/'
+snaps = glob.glob(snaps_dir+'/galaxy*.hdf5')
 
 
 print('initializing lists')
@@ -57,10 +57,10 @@ metallicity_logzsol = []
 gal_count = []
 filter_list = []
 
-for galaxy in tqdm.tqdm(range(2001,5479)):
+for galaxy in tqdm.tqdm(range(len(snaps))):
     
     try:
-        m = ModelOutput(pd_dir+'/snap028.galaxy'+str(galaxy)+'.rtout.sed')
+        m = ModelOutput(pd_dir+'/snap'+snap_num+'.galaxy'+str(galaxy)+'.rtout.sed')
         ds = yt.load(snaps_dir+'/galaxy_'+str(galaxy)+'.hdf5')
         wav, flux = m.get_sed(inclination=0, aperture=-1)
     except:
@@ -134,8 +134,10 @@ for galaxy in tqdm.tqdm(range(2001,5479)):
     
     print('got SFR')
     
-    metal_mass = (ad[("PartType0", "Masses")])*(ad["PartType0", "Metallicity"].value)
-    dust_masses = metal_mass * 0.4
+    #metal_mass = (ad[("PartType0", "Masses")])*(ad["PartType0", "Metallicity"].value)
+    #dust_masses = metal_mass * 0.4
+    dust_masses = ad.ds.arr(ad[("PartType0", "Dust_Masses")].value, 'code_mass')
+    #dust_masses = ad[("PartType0", "Dust_Masses")]
     dust_mass_Msun.append([np.sum(dust_masses.in_units('Msun').value)])
     print('got dust mass')
     filter_list.append([x.name for x in filters])
@@ -145,7 +147,7 @@ print('saving SEDs')
 sed_data = {'ID' : gal_count, 'Filters' : filter_list, 'Flux [Jy]' : flux_Jy, 'Flux Err': fluxe_Jy}
 
 s = pd.DataFrame(sed_data, index=np.arange(len(gal_count)))
-s.to_pickle('/orange/narayanan/s.lower/eagle/eagle_ml_SEDs_z0_pt2.pkl')
+s.to_pickle('/orange/narayanan/s.lower/simba/simba_ml_SEDs_z'+z+'.pkl')
 
 #print('index: ',np.shape(np.arange(len(gal_count))))
 #print('flux: ',np.shape(flux_Jy))
@@ -156,6 +158,6 @@ s.to_pickle('/orange/narayanan/s.lower/eagle/eagle_ml_SEDs_z0_pt2.pkl')
 print('saving properties')
 prop_data = {'ID' : gal_count, 'stellar_mass' : stellar_mass_Msun, 'dust_mass' : dust_mass_Msun, 'sfr' : sfr100, 'metallicity' : metallicity_logzsol}
 t = pd.DataFrame(prop_data, index = np.arange(len(gal_count)))
-t.to_pickle('/orange/narayanan/s.lower/eagle/eagle_ml_prosp_z0_pt2.pkl') 
+t.to_pickle('/orange/narayanan/s.lower/simba/simba_ml_props_z'+z+'.pkl')
 
 

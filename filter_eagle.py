@@ -20,7 +20,7 @@ snap_z = 'z'+a[0]+'p'+a[1]
 fname = 'snap_'+"{:03d}".format(int(snap_num))+'_'+snap_z+'.0.hdf5'
 dirname = 'snapshot_'+"{:03d}".format(int(snap_num))+'_'+snap_z
 
-IDs = pd.read_csv('/orange/narayanan/s.lower/eagle/filtered_snapshots/snap'+snap_num+'_halo_galaxy.csv')
+IDs = pd.read_csv('/orange/narayanan/s.lower/eagle/filtered_snapshots/galaxy_lists/snap'+snap_num+'_halo_galaxy.csv')
 group = IDs['GroupNumber'][int(galaxy)]
 subgroup = IDs['SubGroupNumber'][int(galaxy)]
 
@@ -32,7 +32,7 @@ snap = read_eagle.EagleSnapshot(snap_dir+'/'+fname)
 snap.select_region(0, 50. * 0.6777, 0, 50. * 0.6777, 0, 50. * 0.6777)
 snap.split_selection(comm_rank, comm_size)
 print('Selected region')
-outdir = '/orange/narayanan/s.lower/eagle/filtered_snapshots/snap28/'
+outdir = '/orange/narayanan/s.lower/eagle/filtered_snapshots/snap023/'
 output_file = h5py.File(outdir+'/galaxy_'+str(galaxy)+'.hdf5', 'w')
 #output_file = h5py.File('/orange/narayanan/s.lower/eagle/filtered_snapshots/snap'+snap_num+'/galaxy_'+str(galaxy)+'.hdf5', 'w')
 input1 = h5py.File(snap_dir+'/'+fname, 'r')

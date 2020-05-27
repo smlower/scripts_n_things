@@ -10,10 +10,10 @@ snap = int(sys.argv[1])
 
 
 
-#snap_dir = '/orange/narayanan/s.lower/output/filtered_snapshots/snap0'+str(snap)+'/'
-#outfile = '/orange/narayanan/s.lower/output/tng_snap'+str(snap)+'_pos.npz'
-snap_dir = '/orange/narayanan/s.lower/simba/desika_filtered_snaps/snap'+str(snap)+'/'
-outfile = '/orange/narayanan/s.lower/simba/desika_filtered_snaps/simba_snap'+str(snap)+'_pos.npz'
+snap_dir = '/orange/narayanan/s.lower/simba/filtered_snapshots/snap'+str(snap)+'/'
+outfile = '/orange/narayanan/s.lower/simba/simba_snap'+str(snap)+'_pos.npz'
+#snap_dir = '/orange/narayanan/s.lower/simba/desika_filtered_snaps/snap'+str(snap)+'/'
+#outfile = '/orange/narayanan/s.lower/simba/desika_filtered_snaps/simba_snap'+str(snap)+'_pos.npz'
 
 
 pos = {}
@@ -42,5 +42,8 @@ for i in tqdm.tqdm(range(len(infiles))):
     infile.close()
 #print(x_pos, y_pos, z_pos)
 ngalaxies['snap'+str(snap)] = len(infiles)
+
+
+
 
 np.savez(outfile, ngalaxies=ngalaxies, pos=pos)
