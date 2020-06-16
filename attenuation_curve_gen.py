@@ -4,11 +4,8 @@
 #generate npz attenuation curves so that we don't have to go through
 #the slow reading in of rtout files but once
 
-import matplotlib
-matplotlib.use('Agg')
 
 import numpy as np
-import matplotlib.pyplot as plt
 from hyperion.model import ModelOutput
 from astropy.cosmology import Planck13
 from astropy import units as u
@@ -30,12 +27,12 @@ galaxy_num = sys.argv[1]
 snap_str = '305'
 
 #composite SED
-sed_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305/mist_pd/snap305/'
+sed_directory = '/orange/narayanan/s.lower/simba/pd_runs/snap305/'
 #stellar only SED
-sources_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305/mist_pd/snap305/'
+sources_directory = sed_directory
 
 
-output_directory = '/ufrc/narayanan/s.lower/pd_runs/simba_m25n512/snap305/attenuation_curves/042020/'
+output_directory = '/orange/narayanan/s.lower/simba/pd_runs/attenuation_curves/snap305/'
 #========================================================
 
 
@@ -59,10 +56,10 @@ def sed_downsample(source_lam,lum_source,wav_rest):
 #if not os.path.exists(output_directory): os.makedirs(output_directory)
 
 
-sed_file = glob(sed_directory+'/*galaxy'+"{:03d}".format(int(galaxy_num))+'.rtout.sed')[0]
+sed_file = glob(sed_directory+'/*galaxy'+str(galaxy_num)+'.rtout.sed')[0]
 #print(sed_file)
 
-stellar_file = glob(sources_directory+'/*.galaxy'+"{:03d}".format(int(galaxy_num))+'.rtin.sed')[0]
+stellar_file = glob(sources_directory+'/*.galaxy'+str(galaxy_num)+'.rtout.sed')[0]
 
 
 
